@@ -6,7 +6,7 @@ import os
 # ==========================================
 # 1. CONFIGURATION & SETUP
 # ==========================================
-st.set_page_config(page_title="Bulletproof Athlete v8", page_icon="🛡️", layout="wide")
+st.set_page_config(page_title="Bulletproof Athlete v9", page_icon="🛡️", layout="wide")
 
 HISTORY_FILE = "workout_history.csv"
 
@@ -45,48 +45,72 @@ def get_youtube_link(name):
     clean_name = name.split("(")[0].strip()
     return f"https://www.youtube.com/results?search_query={clean_name.replace(' ', '+')}+exercise+form"
 
-# --- CSS STYLING ---
+# --- CSS STYLING (FIXED FOR DARK MODE) ---
 st.markdown("""
 <style>
+    /* Banners */
     .banner { padding: 20px; border-radius: 12px; color: white; margin-bottom: 25px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
     .build { background: linear-gradient(135deg, #2E7D32, #1B5E20); }
     .shred { background: linear-gradient(135deg, #C62828, #B71C1C); }
     .flow { background: linear-gradient(135deg, #1565C0, #0D47A1); }
     .repair { background: linear-gradient(135deg, #F57C00, #E65100); }
     .recovery { background: linear-gradient(135deg, #607D8B, #455A64); }
-    .alt-text { color: #d32f2f; font-size: 0.85em; font-style: italic; display: block; }
-    .tempo-tag { background-color: #e3f2fd; color: #1565c0; padding: 2px 6px; border-radius: 4px; font-size: 0.8em; font-weight: bold; }
-    .bible-card { background-color: #f1f8e9; padding: 15px; border-radius: 10px; border-left: 5px solid #558b2f; margin-bottom: 10px; }
-    .core-box { background-color: #f8f9fa; border-left: 5px solid #343a40; padding: 15px; border-radius: 0 8px 8px 0; margin-top: 20px; }
-    a { text-decoration: none; font-weight: bold; color: #0288D1; }
+    
+    /* Text Colors & Helpers */
+    .alt-text { color: #d32f2f !important; font-size: 0.85em; font-style: italic; display: block; }
+    .tempo-tag { background-color: #e3f2fd; color: #0d47a1 !important; padding: 2px 6px; border-radius: 4px; font-size: 0.8em; font-weight: bold; }
+    
+    /* Iron Bible Card - FORCE DARK TEXT */
+    .bible-card { 
+        background-color: #f1f8e9; 
+        color: #1a1a1a !important; /* Forces dark text on light bg */
+        padding: 15px; 
+        border-radius: 10px; 
+        border-left: 5px solid #558b2f; 
+        margin-bottom: 10px; 
+    }
+    .bible-card h3 { color: #2e7d32 !important; margin: 0 0 5px 0; }
+    .bible-card p { color: #1a1a1a !important; margin: 5px 0; }
+    
+    /* Core Box - FORCE DARK TEXT */
+    .core-box { 
+        background-color: #e9ecef; 
+        color: #1a1a1a !important; /* Forces dark text */
+        border-left: 5px solid #343a40; 
+        padding: 15px; 
+        border-radius: 0 8px 8px 0; 
+        margin-top: 20px; 
+    }
+    .core-box h4 { color: #1a1a1a !important; margin: 0 0 10px 0; }
+    
+    a { text-decoration: none; font-weight: bold; color: #0288D1 !important; }
 </style>
 """, unsafe_allow_html=True)
 
 # ==========================================
 # 2. DYNAMIC WARMUPS & COOLDOWNS
 # ==========================================
-# Based on the Category of the day (Lower, Push, Pull)
 
 WARMUPS = {
-    "Lower": [ # For Leg Days
+    "Lower": [ 
         {"name": "90/90 Hip Switch", "time": "2 mins"},
         {"name": "Leg Swings (Front/Side)", "time": "15 reps"},
         {"name": "World's Greatest Stretch", "time": "5 reps/side"},
         {"name": "Glute Bridges", "time": "20 reps"}
     ],
-    "Push": [ # For Chest/Shoulder Days
+    "Push": [ 
         {"name": "Arm Circles", "time": "30 secs"},
         {"name": "Band Pull-Aparts", "time": "20 reps"},
         {"name": "Thoracic Rotations", "time": "10 reps/side"},
         {"name": "Scapular Pushups", "time": "15 reps"}
     ],
-    "Pull": [ # For Back Days
+    "Pull": [ 
         {"name": "Cat-Cow", "time": "1 min"},
         {"name": "Dead Hang", "time": "30 secs"},
         {"name": "Band Pass-Throughs", "time": "15 reps"},
         {"name": "Bird-Dog", "time": "10 reps"}
     ],
-    "Mobility": [ # For Rest/Recovery
+    "Mobility": [ 
         {"name": "Light Walk", "time": "5 mins"},
         {"name": "Joint Circles", "time": "2 mins"}
     ]
@@ -116,7 +140,6 @@ COOLDOWNS = {
 # ==========================================
 # 3. THE "IRON BIBLE" (Knowledge Bank)
 # ==========================================
-# This maps exercises to their target muscles and specific stretches
 EXERCISE_BIBLE = {
     "Goblet Squat": {"Muscle": "Quads & Glutes", "Stretch": "Couch Stretch", "Cue": "Elbows inside knees. Chest up."},
     "Trap Bar Deadlift": {"Muscle": "Posterior Chain", "Stretch": "Seated Hamstring Fold", "Cue": "Hips low. Drive floor away."},
@@ -176,14 +199,12 @@ INFINITY_SEASONS = {
             "Friday": {"Focus": "Hypertrophy", "Type": "Gym", "Category": "Pull", "Exercises": [{"name": "Front Squat", "sets": "3x8", "tempo": "3-1-1", "note": "Quads", "alt": "Goblet"}, {"name": "RDL", "sets": "3x10", "tempo": "3-1-1", "note": "Hams", "alt": "Curl"}, {"name": "Dips", "sets": "3xF", "tempo": "Slow", "note": "Chest", "alt": "Pushup"}], "Core": [{"name": "Ab Wheel", "sets": "3x10"}]}
         }
     }
-    # (Shred and Flow seasons hidden for brevity but logic remains same)
 }
 
 # --- LOGIC FUNCTIONS ---
 def get_daily_plan(data_source, day_name, is_home):
     gym_plan = data_source["Routine"].get(day_name, {"Focus": "Active Recovery", "Type": "Recovery", "Category": "Mobility", "Exercises": [{"name": "Walk", "sets": "30m", "tempo": "-", "alt": "-"}], "Core": []})
     
-    # Dynamic Warmup/Cooldown Selection
     cat = gym_plan.get("Category", "Mobility")
     warmup = WARMUPS.get(cat, WARMUPS["Mobility"])
     cooldown = COOLDOWNS.get(cat, COOLDOWNS["Mobility"])
@@ -202,7 +223,7 @@ def ai_coach(day_count, mode, mood):
 
 # --- MAIN APP ---
 def main():
-    st.title("🛡️ Bulletproof Athlete v8.0")
+    st.title("🛡️ Bulletproof Athlete v9.0")
     
     # TABS FOR MAIN NAVIGATION
     tab_workout, tab_bible, tab_history = st.tabs(["🏋️ Daily Workout", "📖 The Iron Bible", "📜 History"])
