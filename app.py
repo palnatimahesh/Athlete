@@ -57,9 +57,8 @@ st.markdown("""
 <style>
     .banner { padding: 20px; border-radius: 12px; color: white; margin-bottom: 25px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
     .repair { background: linear-gradient(135deg, #F57C00, #E65100); }
-    .primer { background: linear-gradient(135deg, #7B1FA2, #4A148C); } /* Purple for Primer */
     .recovery { background: linear-gradient(135deg, #607D8B, #455A64); }
-    .alt-text { color: #d32f2f !important; font-size: 0.9em; font-weight: bold; display: block; margin-top: 4px; }
+    .alt-text { color: #d32f2f !important; font-size: 0.9em; font-weight: bold; display: block; margin-top: 5px; }
     .tempo-tag { background-color: #e3f2fd; color: #1565c0 !important; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold; }
     .bible-card { background-color: #f1f8e9; color: #1a1a1a !important; padding: 15px; border-radius: 10px; border-left: 5px solid #558b2f; margin-bottom: 10px; }
     .bible-card h4 { color: #2e7d32 !important; margin: 0 0 5px 0; }
@@ -93,88 +92,56 @@ COOLDOWNS = {
 
 # --- HOME REPAIR ROUTINES ---
 HOME_REPAIR = {
-    # MONDAY: ADDUCTOR REPAIR
-    "Monday": [
+    "Monday": [ # ADDUCTOR REPAIR
         {"name": "Seated Pillow Squeeze", "sets": "4 x 15s", "tempo": "Max Effort", "alt":"-", "note": "Sit on chair. Squeeze pillow between knees 100% effort."},
         {"name": "Copenhagen Plank (Floor)", "sets": "3 x 20s", "tempo": "Hold", "alt":"-", "note": "Top knee on chair. Lift hips. Gold standard."},
         {"name": "Bulgarian Split Squat", "sets": "3 x 10/leg", "tempo": "3-1-1", "alt":"-", "note": "Stretches hip flexor while strengthening glute."},
         {"name": "Glute Bridge March", "sets": "3 x 20", "tempo": "Slow", "alt":"-", "note": "Hips up. Lift one leg at a time without hips dropping."}
     ],
-    # THURSDAY: LOWER BACK ARMOUR
-    "Thursday": [
+    "Thursday": [ # LOWER BACK ARMOUR
         {"name": "Superman Hold", "sets": "4 x 30s", "tempo": "Hold", "alt":"-", "note": "Lie on belly. Lift chest and thighs. Squeezes spinal erectors."},
         {"name": "Single Leg RDL (Bodyweight)", "sets": "3 x 12/leg", "tempo": "3-1-1", "alt":"-", "note": "Soft knee. Reach to floor. Forces QL muscle to balance spine."},
         {"name": "Bird-Dog (High Tension)", "sets": "3 x 10/side", "tempo": "Hold 5s", "alt":"-", "note": "Make a fist. Kick heel back hard. Brace core."},
         {"name": "Doorframe Rows", "sets": "4 x 15", "tempo": "Squeeze", "alt":"-", "note": "Upper back posture fix."}
     ],
-    # UPPER BODY / MOBILITY (For Phase 0 or Home Days)
     "Push": [{"name": "Decline Pushups", "sets": "4xF", "tempo": "2-0-1", "alt":"-", "note": "Feet on couch."}, {"name": "Pike Pushups", "sets": "3x10", "tempo": "Slow", "alt":"-", "note": "Shoulders."}, {"name": "Door Flys", "sets": "3x15", "tempo": "Squeeze", "alt":"-", "note": "Chest."}],
-    "Pull": [{"name": "Door Towel Row", "sets": "4x15", "tempo": "Squeeze", "alt":"-", "note": "Lats."}, {"name": "Prone W-Raise", "sets": "3x15", "tempo": "Hold", "alt":"-", "note": "Upper Back."}, {"name": "Scap Retract", "sets": "3x20", "tempo": "Hold", "alt":"-", "note": "Posture."}],
-    "Mobility": [{"name": "Full Body Flow", "sets": "20m", "tempo": "Flow", "alt":"-", "note": "Yoga or Stretch."}, {"name": "90/90 Hip Drill", "sets": "5m", "tempo": "Slow", "alt":"-", "note": "Loosen Hips."}]
+    "Pull": [{"name": "Door Towel Row", "sets": "4x15", "tempo": "Squeeze", "alt":"-", "note": "Lats."}, {"name": "Prone W-Raise", "sets": "3x15", "tempo": "Hold", "alt":"-", "note": "Upper Back."}, {"name": "Scap Retract", "sets": "3x20", "tempo": "Hold", "alt":"-", "note": "Posture."}]
 }
 
-# --- PHASES DATABASE ---
+# --- GYM FOUNDATION ---
 FOUNDATION_PHASES = {
-    # NEW: PHASE 0 (The Primer)
-    "Phase 0: The Primer (Weeks 1-2)": {
-        "Theme": "Pure Structural Repair. No Heavy Loading.", "Class": "primer",
-        "Routine": {
-            # Mon/Thu = Hard Repair. Tue/Fri = Light Mobility.
-            "Monday": {"Focus": "Adductor Repair (Hard)", "Type": "Gym", "Category": "Lower", "Home_Map": "Monday", "Exercises": [
-                {"name": "Copenhagen Plank", "sets": "3 x 15s", "tempo": "Hold", "note": "Squeeze legs.", "alt": "Side Plank"},
-                {"name": "Adductor Machine", "sets": "3 x 15", "tempo": "3-0-1", "note": "Control.", "alt": "Pillow Squeeze"},
-                {"name": "Goblet Squat", "sets": "3 x 10", "tempo": "3-1-1", "note": "Light weight.", "alt": "Bodyweight Squat"}
-            ], "Core": [{"name": "Deadbugs", "sets": "3 x 8"}]},
-            
-            "Thursday": {"Focus": "Spine Armour (Hard)", "Type": "Gym", "Category": "Lower", "Home_Map": "Thursday", "Exercises": [
-                {"name": "Back Extensions", "sets": "3 x 12", "tempo": "2-1-1", "note": "Glutes.", "alt": "Superman Hold"},
-                {"name": "DB RDL", "sets": "3 x 10", "tempo": "3-1-1", "note": "Very Light.", "alt": "SL RDL (BW)"},
-                {"name": "Bird Dog", "sets": "3 x 10", "tempo": "Hold", "note": "Stability.", "alt": "-"}
-            ], "Core": [{"name": "McGill Curl Up", "sets": "4 x 10s"}]},
-
-            # TUE/FRI are Mobility Focused in Phase 0 to allow back to heal
-            "Tuesday": {"Focus": "Upper Body Mobility", "Type": "Recovery", "Category": "Mobility", "Home_Map": "Mobility", "Exercises": [{"name": "Pushups", "sets": "3 x 10", "tempo": "Slow", "note": "Perfect form.", "alt": "-"}, {"name": "Band Pull Aparts", "sets": "3 x 20", "tempo": "Squeeze", "note": "Posture.", "alt": "-"}], "Core": [{"name": "Plank", "sets": "3 x 30s"}]},
-            "Friday": {"Focus": "Full Body Flow", "Type": "Recovery", "Category": "Mobility", "Home_Map": "Mobility", "Exercises": [{"name": "Incline Walk", "sets": "30m", "tempo": "Zone 2", "note": "Blood flow.", "alt": "-"}], "Core": []},
-            
-            "Wednesday": {"Focus": "Active Recovery", "Type": "Recovery", "Category": "Mobility", "Exercises": [{"name": "Walk", "sets": "30m", "tempo": "-", "alt": "-"}], "Core": []},
-            "Saturday": {"Focus": "Outdoor", "Type": "Recovery", "Category": "Mobility", "Exercises": [{"name": "Hike/Swim", "sets": "60m", "tempo": "Fun", "alt": "-"}], "Core": []},
-            "Sunday": {"Focus": "Rest", "Type": "Recovery", "Category": "Mobility", "Exercises": [{"name": "Vitamin D3", "sets": "1 Sachet", "tempo": "-", "alt": "-"}], "Core": []}
-        }
-    },
-
-    # PHASE 1 (The Original Plan - Start this Week 3)
-    "Phase 1: Structural Repair (Weeks 3-6)": {
-        "Theme": "Fix Back. Fire Adductors. Start Loading.", "Class": "repair",
+    "Phase 1: Structural Repair": {
+        "Theme": "Fix Back. Fire Adductors. Detox.", "Class": "repair",
         "Routine": {
             "Monday": {"Focus": "Adductor & Glute Repair", "Type": "Gym", "Category": "Lower", "Home_Map": "Monday", "Exercises": [
-                {"name": "Copenhagen Plank (Knee)", "sets": "3 x 20s", "tempo": "Hold", "note": "Squeeze legs hard.", "alt": "Side Plank"},
-                {"name": "Goblet Squat (Heels High)", "sets": "4 x 12", "tempo": "3-1-1", "note": "Torso vertical.", "alt": "Leg Press"},
+                {"name": "Copenhagen Plank (Knee)", "sets": "3 x 20s", "tempo": "Hold", "note": "Squeeze legs hard.", "alt": "Side Plank on floor"},
+                {"name": "Goblet Squat (Heels High)", "sets": "4 x 12", "tempo": "3-1-1", "note": "Torso vertical.", "alt": "Leg Press (Feet High)"},
                 {"name": "Cable Pull-Throughs", "sets": "3 x 15", "tempo": "2-0-1", "note": "Hinge hips back.", "alt": "DB RDL (Light)"},
-                {"name": "Adductor Machine", "sets": "3 x 15", "tempo": "3-0-1", "note": "Control eccentric.", "alt": "Cable Adduction"}
+                {"name": "Adductor Machine", "sets": "3 x 15", "tempo": "3-0-1", "note": "Control eccentric.", "alt": "Cable Adduction or Band Squeeze"}
             ], "Core": [{"name": "Deadbugs", "sets": "3 x 10"}]},
             
             "Tuesday": {"Focus": "Upper Push", "Type": "Gym", "Category": "Push", "Home_Map": "Push", "Exercises": [
-                {"name": "Seated DB Press", "sets": "3 x 10", "tempo": "2-1-1", "note": "Protect spine.", "alt": "Machine Press"},
-                {"name": "Incline DB Press", "sets": "3 x 12", "tempo": "3-0-1", "note": "Upper chest.", "alt": "Inc Machine"},
-                {"name": "Chest Fly", "sets": "3 x 15", "tempo": "2-1-1", "note": "Squeeze.", "alt": "Pec Deck"}
+                {"name": "Seated DB Press", "sets": "3 x 10", "tempo": "2-1-1", "note": "Protect spine.", "alt": "Machine Shoulder Press"},
+                {"name": "Incline DB Press", "sets": "3 x 12", "tempo": "3-0-1", "note": "Upper chest.", "alt": "Incline Machine Press"},
+                {"name": "Chest Fly", "sets": "3 x 15", "tempo": "2-1-1", "note": "Squeeze.", "alt": "Pec Deck Machine"}
             ], "Core": [{"name": "Pallof Press", "sets": "3 x 15s"}]},
             
-            "Wednesday": {"Focus": "Active Recovery", "Type": "Recovery", "Category": "Mobility", "Exercises": [{"name": "Incline Walk", "sets": "30m", "tempo": "Zone 2", "note": "No run.", "alt": "-"}], "Core": []},
+            "Wednesday": {"Focus": "Active Recovery", "Type": "Recovery", "Category": "Mobility", "Home_Map": "Mobility", "Exercises": [{"name": "Incline Walk", "sets": "30m", "tempo": "Zone 2", "note": "No run.", "alt": "-"}], "Core": []},
             
             "Thursday": {"Focus": "Lower Back Armour", "Type": "Gym", "Category": "Lower", "Home_Map": "Thursday", "Exercises": [
-                {"name": "Lying Leg Curls", "sets": "3 x 12", "tempo": "3-0-1", "note": "Control.", "alt": "Seat Curl"},
-                {"name": "DB RDL (Light)", "sets": "3 x 10", "tempo": "3-1-1", "note": "Stop at shins.", "alt": "Back Ext"},
+                {"name": "Lying Leg Curls", "sets": "3 x 12", "tempo": "3-0-1", "note": "Control.", "alt": "Seated Leg Curl"},
+                {"name": "DB RDL (Light)", "sets": "3 x 10", "tempo": "3-1-1", "note": "Stop at shins.", "alt": "45-Degree Back Extension"},
                 {"name": "Back Extensions", "sets": "3 x 15", "tempo": "2-1-1", "note": "Glutes only.", "alt": "Bird-Dog (Weighted)"}
             ], "Core": [{"name": "McGill Curl Up", "sets": "5 x 10s"}]},
             
             "Friday": {"Focus": "Upper Pull", "Type": "Gym", "Category": "Pull", "Home_Map": "Pull", "Exercises": [
-                {"name": "Chest Supp Row", "sets": "3 x 10", "tempo": "2-1-1", "note": "Squeeze.", "alt": "Cable Row"},
-                {"name": "Face Pulls", "sets": "4 x 15", "tempo": "Hold", "note": "Posture.", "alt": "Rev Pec Deck"},
-                {"name": "Lat Pulldowns", "sets": "3 x 12", "tempo": "2-0-1", "note": "Elbows.", "alt": "Ast Pullup"}
+                {"name": "Chest Supp Row", "sets": "3 x 10", "tempo": "2-1-1", "note": "Squeeze.", "alt": "Seated Cable Row"},
+                {"name": "Face Pulls", "sets": "4 x 15", "tempo": "Hold", "note": "Posture.", "alt": "Reverse Pec Deck"},
+                {"name": "Lat Pulldowns", "sets": "3 x 12", "tempo": "2-0-1", "note": "Elbows.", "alt": "Assisted Pull-up Machine"}
             ], "Core": [{"name": "Plank Taps", "sets": "3 x 45s"}]},
             
-            "Saturday": {"Focus": "Outdoor", "Type": "Recovery", "Category": "Mobility", "Exercises": [{"name": "Hike/Swim", "sets": "60m", "tempo": "Fun", "alt": "-"}], "Core": []},
-            "Sunday": {"Focus": "Rest", "Type": "Recovery", "Category": "Mobility", "Exercises": [{"name": "Vitamin D3", "sets": "1 Sachet", "tempo": "-", "alt": "-"}], "Core": []}
+            "Saturday": {"Focus": "Outdoor", "Type": "Recovery", "Category": "Mobility", "Home_Map": "Mobility", "Exercises": [{"name": "Hike/Swim", "sets": "60m", "tempo": "Fun", "note": "Move.", "alt": "-"}], "Core": []},
+            "Sunday": {"Focus": "Rest", "Type": "Recovery", "Category": "Mobility", "Home_Map": "Mobility", "Exercises": [{"name": "Vitamin D3", "sets": "1 Sachet", "tempo": "-", "note": "With Fat.", "alt": "-"}], "Core": []}
         }
     }
 }
@@ -184,9 +151,11 @@ EXERCISE_BIBLE = {
     # QUADS & GLUTES
     "Goblet Squat": {"Muscle": "Quads/Core", "Stretch": "Couch Stretch", "Cue": "Elbows inside knees. Chest up."},
     "Bulgarian Split Squat": {"Muscle": "Glutes/Quads", "Stretch": "Couch Stretch", "Cue": "Torso forward for glutes. Upright for quads."},
+    "Leg Press": {"Muscle": "Quads", "Stretch": "Quad Stretch", "Cue": "Don't lock knees at top."},
     # POSTERIOR CHAIN
     "Trap Bar Deadlift": {"Muscle": "Full Body", "Stretch": "Hamstring Fold", "Cue": "Push floor away. Hips low."},
     "RDL": {"Muscle": "Hamstrings", "Stretch": "Toe Touch", "Cue": "Hips back. Soft knees."},
+    "Lying Leg Curls": {"Muscle": "Hamstrings", "Stretch": "Seated Hamstring Stretch", "Cue": "Hips glued to pad."},
     "Superman Hold": {"Muscle": "Lower Back", "Stretch": "Child's Pose", "Cue": "Lift chest and thighs."},
     # ADDUCTORS
     "Copenhagen Plank": {"Muscle": "Adductors", "Stretch": "Butterfly", "Cue": "Lift hips high. Squeeze top leg."},
@@ -195,12 +164,18 @@ EXERCISE_BIBLE = {
     "Seated DB Press": {"Muscle": "Shoulders", "Stretch": "Clasped Hands Back", "Cue": "Ribs down. Press slightly forward."},
     "Incline DB Press": {"Muscle": "Upper Chest", "Stretch": "Door Pec Stretch", "Cue": "Elbows 45 degrees."},
     "Pushups": {"Muscle": "Chest", "Stretch": "Chest Opener", "Cue": "Arrow shape arms."},
+    "Dips": {"Muscle": "Lower Chest", "Stretch": "Overhead Tricep Stretch", "Cue": "Lean forward."},
     # PULL
     "Chest Supported Row": {"Muscle": "Upper Back", "Stretch": "Dead Hang", "Cue": "Squeeze spine."},
     "Lat Pulldown": {"Muscle": "Lats", "Stretch": "Dead Hang", "Cue": "Elbows to pockets."},
+    "Face Pulls": {"Muscle": "Rear Delts", "Stretch": "Cross Body", "Cue": "Thumbs back."},
+    # ARMS
+    "Hammer Curl": {"Muscle": "Biceps/Brachialis", "Stretch": "Wrist Extension", "Cue": "Thumbs up."},
+    "Tricep Pushdown": {"Muscle": "Triceps", "Stretch": "Overhead Stretch", "Cue": "Elbows glued to side."},
     # CORE
     "Deadbug": {"Muscle": "Deep Core", "Stretch": "Cobra", "Cue": "Back glued to floor."},
-    "Pallof Press": {"Muscle": "Anti-Rotation", "Stretch": "Side Bend", "Cue": "Resist the turn."}
+    "Pallof Press": {"Muscle": "Anti-Rotation", "Stretch": "Side Bend", "Cue": "Resist the turn."},
+    "McGill Curl Up": {"Muscle": "Spine Stability", "Stretch": "None", "Cue": "Hands under lower back."}
 }
 
 # --- LOGIC FUNCTIONS ---
@@ -226,6 +201,7 @@ def get_daily_plan(data_source, day_name, is_home):
     return {**gym_plan, "Warmup": warmup, "Cooldown": cooldown}
 
 def ai_coach(day_count, mode, mood):
+    if mode == "Infinity Loop (Forever)" and day_count < 180: return "⚠️ **LOGIC ERROR:** Stick to Foundation Phase 1.", False
     if mood == "Injured / Pain": return "🚨 **INJURY:** Gym Cancelled. Rehab Loaded.", True
     if mood == "Tired / Low Energy": return "📉 **ADJUST:** Reduce weight 20%.", False
     return "✅ **GO MODE:** Focus on structure.", False
@@ -240,12 +216,9 @@ def main():
     st.sidebar.header("⚙️ Settings")
     days_active = st.sidebar.number_input("Days Active", min_value=1, value=1)
     location = st.sidebar.radio("📍 Location", ["Gym", "Home"])
+    mode = "Foundation (First 6 Months)" 
+    st.sidebar.info(f"Mode Locked: {mode}")
     
-    # PHASE SELECTION
-    phase_options = list(FOUNDATION_PHASES.keys())
-    phase_selection = st.sidebar.selectbox("Current Phase", phase_options)
-    
-    # Clear History Button
     if st.sidebar.button("🗑️ Clear History Log"):
         if clear_history():
             st.sidebar.success("Log Deleted.")
@@ -254,13 +227,12 @@ def main():
     # Meds
     st.sidebar.divider()
     st.sidebar.header("💊 Stack")
-    with st.sidebar.expander("Morning (Empty)"): st.checkbox("L-Carnitine"); st.checkbox("NMN")
-    with st.sidebar.expander("Breakfast (Fat)"): 
-        st.caption("ℹ️ Take with fat for absorption.")
-        st.checkbox("Omega3"); st.checkbox("Ubiquinol"); st.checkbox("Vit E")
-        st.write("---")
-        st.write("Can move to Lunch:")
+    with st.sidebar.expander("Morning"): st.checkbox("L-Carnitine"); st.checkbox("NMN")
+    with st.sidebar.expander("Breakfast"): 
+        st.checkbox("Ubiquinol + Omega3")
         st.checkbox("B12 + C")
+        st.checkbox("Vit E")
+        st.checkbox("Vit D3 (Sundays Only)")
     with st.sidebar.expander("Night"): st.checkbox("Magnesium"); st.checkbox("Zinc")
 
     # TAB 1: WORKOUT
@@ -270,12 +242,12 @@ def main():
         col1.metric("🔥 Streak", f"{streak}")
         mood = col2.selectbox("Status", ["Neutral", "Great / Strong", "Tired / Low Energy", "Injured / Pain"])
         
-        msg, override = ai_coach(days_active, "Foundation", mood)
+        msg, override = ai_coach(days_active, mode, mood)
         if override: st.error(msg)
         else: st.info(msg)
         
         if st.button("✅ Log Workout"):
-            save_history(datetime.date.today(), phase_selection, mood, "Yes")
+            save_history(datetime.date.today(), mode, mood, "Yes")
             st.success("Logged!")
 
         today_name = datetime.datetime.now().strftime("%A")
@@ -286,12 +258,9 @@ def main():
         if override:
             plan = {"Focus": "Emergency Rehab", "Type": "Rehab", "Exercises": HOME_REPAIR["Thursday"], "Core": [], "Warmup": [], "Cooldown": []} 
         else:
-            plan = get_daily_plan(FOUNDATION_PHASES[phase_selection], today_name, location == "Home")
+            plan = get_daily_plan(FOUNDATION_PHASES["Phase 1: Structural Repair"], today_name, location == "Home")
 
-        css = "primer" if "Primer" in phase_selection else "repair"
-        if plan["Type"] == "Recovery": css = "recovery"
-        
-        st.markdown(f"<div class='banner {css}'><h3>{plan['Focus']}</h3></div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='banner repair'><h3>{plan['Focus']}</h3></div>", unsafe_allow_html=True)
 
         # Warmup
         if plan.get("Warmup"):
@@ -306,6 +275,7 @@ def main():
                 link = get_youtube_link(ex['name'])
                 c1.markdown(f"**{i+1}. {ex['name']}** [[📺 Demo]]({link})")
                 
+                # ALTERNATIVE DISPLAY (GYM ONLY)
                 if plan["Type"] == "Gym" and "alt" in ex and ex["alt"] != "-":
                     c1.markdown(f"<span class='alt-text'>Gym Busy? Use: {ex['alt']}</span>", unsafe_allow_html=True)
                 
