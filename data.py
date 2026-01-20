@@ -3,6 +3,7 @@
 # ==========================================
 # 1. DYNAMIC WARMUPS & COOLDOWNS
 # ==========================================
+# These change automatically based on the workout category
 WARMUPS = {
     "Lower": [
         {"name": "90/90 Hip Switch", "time": "2 mins", "note": "Internal/External rotation."},
@@ -110,29 +111,29 @@ FOUNDATION_PHASES = {
 }
 
 # ==========================================
-# 3. THE 6-WEEK COURSE (RUNTASTIC STYLE)
+# 3. 6-WEEK COURSE (RUNTASTIC STYLE)
 # ==========================================
 COURSE_DATA = {
     # PHASE 1: STABILITY & CONTROL (Weeks 1-2)
     1: {"Phase": "Phase 1: Stability", "Theme": "phase1", "Schedule": {
-            "Day 1": {"Focus": "Lower Stability", "Exercises": [{"name": "Bodyweight Squat", "sets": "3x12", "tempo": "3-1-1", "note": "Control down."}, {"name": "Glute Bridges", "sets": "3x15", "tempo": "Hold", "note": "Squeeze."}, {"name": "Plank", "sets": "3x30s", "tempo": "Hold", "note": "Abs tight."}]},
-            "Day 2": {"Focus": "Upper Control", "Exercises": [{"name": "Pushups", "sets": "3x10", "tempo": "2-0-1", "note": "Chest to floor."}, {"name": "Door Rows", "sets": "3x15", "tempo": "Squeeze", "note": "Lean back."}, {"name": "Superman", "sets": "3x30s", "tempo": "Hold", "note": "Lift chest."}]},
-            "Day 3": {"Focus": "Recovery", "Exercises": [{"name": "Walk", "sets": "30m", "tempo": "-", "note": "Zone 2."}, {"name": "Stretch Flow", "sets": "10m", "tempo": "-", "note": "Full body."}]},
-            "Day 4": {"Focus": "Full Body", "Exercises": [{"name": "Squat to Chair", "sets": "3x15", "tempo": "Touch", "note": "Tap and go."}, {"name": "Incline Pushup", "sets": "3x12", "tempo": "Control", "note": "Hands on couch."}, {"name": "Bird Dog", "sets": "3x10", "tempo": "Hold", "note": "Core."}]}
+            "Day 1": {"Focus": "Lower Stability", "Category": "Lower", "Exercises": [{"name": "Bodyweight Squat", "sets": "3x12", "tempo": "3-1-1", "note": "Control down."}, {"name": "Glute Bridges", "sets": "3x15", "tempo": "Hold", "note": "Squeeze."}, {"name": "Plank", "sets": "3x30s", "tempo": "Hold", "note": "Abs tight."}]},
+            "Day 2": {"Focus": "Upper Control", "Category": "Push", "Exercises": [{"name": "Pushups", "sets": "3x10", "tempo": "2-0-1", "note": "Chest to floor."}, {"name": "Door Rows", "sets": "3x15", "tempo": "Squeeze", "note": "Lean back."}, {"name": "Superman", "sets": "3x30s", "tempo": "Hold", "note": "Lift chest."}]},
+            "Day 3": {"Focus": "Recovery", "Category": "Mobility", "Exercises": [{"name": "Walk", "sets": "30m", "tempo": "-", "note": "Zone 2."}, {"name": "Stretch Flow", "sets": "10m", "tempo": "-", "note": "Full body."}]},
+            "Day 4": {"Focus": "Full Body", "Category": "Pull", "Exercises": [{"name": "Squat to Chair", "sets": "3x15", "tempo": "Touch", "note": "Tap and go."}, {"name": "Incline Pushup", "sets": "3x12", "tempo": "Control", "note": "Hands on couch."}, {"name": "Bird Dog", "sets": "3x10", "tempo": "Hold", "note": "Core."}]}
     }},
     # PHASE 2: STRENGTH (Weeks 3-4)
     2: {"Phase": "Phase 2: Strength", "Theme": "phase2", "Schedule": {
-            "Day 1": {"Focus": "Lower Strength", "Exercises": [{"name": "Split Squat", "sets": "3x10", "tempo": "Control", "note": "Back foot up."}, {"name": "Wall Sit", "sets": "3x45s", "tempo": "Hold", "note": "Legs 90 deg."}, {"name": "Side Plank", "sets": "3x30s", "tempo": "Hold", "note": "Hips up."}]},
-            "Day 2": {"Focus": "Upper Strength", "Exercises": [{"name": "Decline Pushup", "sets": "3xF", "tempo": "Power", "note": "Feet up."}, {"name": "Towel Row", "sets": "4x12", "tempo": "Squeeze", "note": "Hard squeeze."}, {"name": "Dips", "sets": "3x12", "tempo": "Control", "note": "Triceps."}]},
-            "Day 3": {"Focus": "Cardio", "Exercises": [{"name": "Run/Jog", "sets": "20m", "tempo": "-", "note": "Steady."}, {"name": "Deadbug", "sets": "3x15", "tempo": "Slow", "note": "Core."}]},
-            "Day 4": {"Focus": "Volume", "Exercises": [{"name": "1.5 Rep Squat", "sets": "3x15", "tempo": "Pump", "note": "Half rep method."}, {"name": "Burpees", "sets": "3x10", "tempo": "Fast", "note": "Full body."}]}
+            "Day 1": {"Focus": "Lower Strength", "Category": "Lower", "Exercises": [{"name": "Split Squat", "sets": "3x10", "tempo": "Control", "note": "Back foot up."}, {"name": "Wall Sit", "sets": "3x45s", "tempo": "Hold", "note": "Legs 90 deg."}, {"name": "Side Plank", "sets": "3x30s", "tempo": "Hold", "note": "Hips up."}]},
+            "Day 2": {"Focus": "Upper Strength", "Category": "Push", "Exercises": [{"name": "Decline Pushup", "sets": "3xF", "tempo": "Power", "note": "Feet up."}, {"name": "Towel Row", "sets": "4x12", "tempo": "Squeeze", "note": "Hard squeeze."}, {"name": "Dips", "sets": "3x12", "tempo": "Control", "note": "Triceps."}]},
+            "Day 3": {"Focus": "Cardio", "Category": "Mobility", "Exercises": [{"name": "Run/Jog", "sets": "20m", "tempo": "-", "note": "Steady."}, {"name": "Deadbug", "sets": "3x15", "tempo": "Slow", "note": "Core."}]},
+            "Day 4": {"Focus": "Volume", "Category": "Pull", "Exercises": [{"name": "1.5 Rep Squat", "sets": "3x15", "tempo": "Pump", "note": "Half rep method."}, {"name": "Burpees", "sets": "3x10", "tempo": "Fast", "note": "Full body."}]}
     }},
     # PHASE 3: POWER (Weeks 5-6)
     3: {"Phase": "Phase 3: Power", "Theme": "phase3", "Schedule": {
-            "Day 1": {"Focus": "Explosive Lower", "Exercises": [{"name": "Jump Squats", "sets": "4x10", "tempo": "Fast", "note": "Jump high."}, {"name": "Jump Lunges", "sets": "3x12", "tempo": "Fast", "note": "Switch air."}, {"name": "Hollow Hold", "sets": "3x30s", "tempo": "Hold", "note": "Banana shape."}]},
-            "Day 2": {"Focus": "Explosive Upper", "Exercises": [{"name": "Plyo Pushups", "sets": "4x8", "tempo": "Fast", "note": "Clap hands."}, {"name": "Mountain Climber", "sets": "4x45s", "tempo": "Sprint", "note": "Knees fast."}, {"name": "Plank to Pushup", "sets": "3x10", "tempo": "Steady", "note": "Up down."}]},
-            "Day 3": {"Focus": "HIIT", "Exercises": [{"name": "Sprints", "sets": "10x30s", "tempo": "Max", "note": "Sprint/Walk."}, {"name": "Leg Raises", "sets": "3x15", "tempo": "Slow", "note": "Abs."}]},
-            "Day 4": {"Focus": "The Gauntlet", "Exercises": [{"name": "Air Squats", "sets": "100", "tempo": "Time", "note": "Fast."}, {"name": "Pushups", "sets": "50", "tempo": "Time", "note": "Fast."}, {"name": "Burpees", "sets": "25", "tempo": "Time", "note": "Fast."}]}
+            "Day 1": {"Focus": "Explosive Lower", "Category": "Lower", "Exercises": [{"name": "Jump Squats", "sets": "4x10", "tempo": "Fast", "note": "Jump high."}, {"name": "Jump Lunges", "sets": "3x12", "tempo": "Fast", "note": "Switch air."}, {"name": "Hollow Hold", "sets": "3x30s", "tempo": "Hold", "note": "Banana shape."}]},
+            "Day 2": {"Focus": "Explosive Upper", "Category": "Push", "Exercises": [{"name": "Plyo Pushups", "sets": "4x8", "tempo": "Fast", "note": "Clap hands."}, {"name": "Mountain Climber", "sets": "4x45s", "tempo": "Sprint", "note": "Knees fast."}, {"name": "Plank to Pushup", "sets": "3x10", "tempo": "Steady", "note": "Up down."}]},
+            "Day 3": {"Focus": "HIIT", "Category": "Mobility", "Exercises": [{"name": "Sprints", "sets": "10x30s", "tempo": "Max", "note": "Sprint/Walk."}, {"name": "Leg Raises", "sets": "3x15", "tempo": "Slow", "note": "Abs."}]},
+            "Day 4": {"Focus": "The Gauntlet", "Category": "Pull", "Exercises": [{"name": "Air Squats", "sets": "100", "tempo": "Time", "note": "Fast."}, {"name": "Pushups", "sets": "50", "tempo": "Time", "note": "Fast."}, {"name": "Burpees", "sets": "25", "tempo": "Time", "note": "Fast."}]}
     }}
 }
 # Map weeks 2, 4, 6 to the same routine as 1, 3, 5 for periodization blocks
