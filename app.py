@@ -6,7 +6,7 @@ import os
 # ==========================================
 # 1. CONFIGURATION & SETUP
 # ==========================================
-st.set_page_config(page_title="Bulletproof Athlete v14", page_icon="🛡️", layout="wide")
+st.set_page_config(page_title="Bulletproof Athlete v15", page_icon="🛡️", layout="wide")
 
 HISTORY_FILE = "workout_history.csv"
 
@@ -57,6 +57,7 @@ st.markdown("""
 <style>
     .banner { padding: 20px; border-radius: 12px; color: white; margin-bottom: 25px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
     .repair { background: linear-gradient(135deg, #F57C00, #E65100); }
+    .reset { background: linear-gradient(135deg, #424242, #212121); } /* Dark Grey for Phase 0 */
     .recovery { background: linear-gradient(135deg, #607D8B, #455A64); }
     .alt-text { color: #d32f2f !important; font-size: 0.9em; font-weight: bold; display: block; margin-top: 5px; }
     .tempo-tag { background-color: #e3f2fd; color: #1565c0 !important; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold; }
@@ -70,7 +71,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ==========================================
-# 2. DYNAMIC WARMUPS & COOLDOWNS
+# 2. DYNAMIC WARMUPS
 # ==========================================
 WARMUPS = {
     "Lower": [{"name": "90/90 Hip Switch", "time": "2 mins"}, {"name": "Cat-Cow", "time": "1 min"}, {"name": "Glute Bridges", "time": "20 reps"}],
@@ -90,30 +91,39 @@ COOLDOWNS = {
 # 3. DATABASES
 # ==========================================
 
-# --- HOME REPAIR ROUTINES (Logic: Matches Gym Biomechanics) ---
+# --- HOME REPAIR ROUTINES (Matches Gym Biomechanics) ---
 HOME_REPAIR = {
-    # MONDAY: ADDUCTOR REPAIR (Replacing Gym Adductor Machine)
-    "Monday": [
-        {"name": "Seated Pillow Squeeze", "sets": "4 x 15s", "tempo": "Max Effort", "alt":"-", "note": "Sit on chair. Squeeze pillow between knees 100% effort. Fires Adductors."},
-        {"name": "Copenhagen Plank (Floor)", "sets": "3 x 20s", "tempo": "Hold", "alt":"-", "note": "Top knee on chair. Lift hips. Gold standard for groin strength."},
+    "Monday": [ # ADDUCTOR REPAIR
+        {"name": "Seated Pillow Squeeze", "sets": "4 x 15s", "tempo": "Max Effort", "alt":"-", "note": "Sit on chair. Squeeze pillow between knees 100% effort."},
+        {"name": "Copenhagen Plank (Floor)", "sets": "3 x 20s", "tempo": "Hold", "alt":"-", "note": "Top knee on chair. Lift hips. Gold standard."},
         {"name": "Bulgarian Split Squat", "sets": "3 x 10/leg", "tempo": "3-1-1", "alt":"-", "note": "Stretches hip flexor while strengthening glute."},
         {"name": "Glute Bridge March", "sets": "3 x 20", "tempo": "Slow", "alt":"-", "note": "Hips up. Lift one leg at a time without hips dropping."}
     ],
-    # THURSDAY: LOWER BACK ARMOUR (Replacing Gym Back Extensions)
-    "Thursday": [
+    "Thursday": [ # LOWER BACK ARMOUR
         {"name": "Superman Hold", "sets": "4 x 30s", "tempo": "Hold", "alt":"-", "note": "Lie on belly. Lift chest and thighs. Squeezes spinal erectors."},
         {"name": "Single Leg RDL (Bodyweight)", "sets": "3 x 12/leg", "tempo": "3-1-1", "alt":"-", "note": "Soft knee. Reach to floor. Forces QL muscle to balance spine."},
-        {"name": "Bird-Dog (High Tension)", "sets": "3 x 10/side", "tempo": "Hold 5s", "alt":"-", "note": "Make a fist. Kick heel back hard. Brace core like getting punched."},
+        {"name": "Bird-Dog (High Tension)", "sets": "3 x 10/side", "tempo": "Hold 5s", "alt":"-", "note": "Make a fist. Kick heel back hard. Brace core."},
         {"name": "Doorframe Rows", "sets": "4 x 15", "tempo": "Squeeze", "alt":"-", "note": "Upper back posture fix."}
     ],
-    # UPPER BODY DAYS (Standard Push/Pull)
     "Push": [{"name": "Decline Pushups", "sets": "4xF", "tempo": "2-0-1", "alt":"-", "note": "Feet on couch."}, {"name": "Pike Pushups", "sets": "3x10", "tempo": "Slow", "alt":"-", "note": "Shoulders."}, {"name": "Door Flys", "sets": "3x15", "tempo": "Squeeze", "alt":"-", "note": "Chest."}],
     "Pull": [{"name": "Door Towel Row", "sets": "4x15", "tempo": "Squeeze", "alt":"-", "note": "Lats."}, {"name": "Prone W-Raise", "sets": "3x15", "tempo": "Hold", "alt":"-", "note": "Upper Back."}, {"name": "Scap Retract", "sets": "3x20", "tempo": "Hold", "alt":"-", "note": "Posture."}]
 }
 
 # --- GYM FOUNDATION ---
 FOUNDATION_PHASES = {
-    "Phase 1: Structural Repair": {
+    "Phase 0: The Reset (Days 1-14)": {
+        "Theme": "Pain Free. De-Inflame. Align.", "Class": "reset",
+        "Routine": {
+            "Monday": {"Focus": "Alignment & Breath", "Type": "Home", "Category": "Mobility", "Exercises": [{"name": "90/90 Breathing", "sets": "5 mins", "tempo": "Slow", "note": "Reset pelvis."}, {"name": "Deadbugs", "sets": "3x10", "tempo": "Slow", "note": "Core engage."}, {"name": "Cat-Cow", "sets": "2 mins", "tempo": "Flow", "note": "Spine lube."}], "Core": []},
+            "Tuesday": {"Focus": "Light Activity", "Type": "Recovery", "Category": "Mobility", "Exercises": [{"name": "Walk", "sets": "20 mins", "tempo": "-", "note": "Keep moving."}], "Core": []},
+            "Wednesday": {"Focus": "Alignment & Breath", "Type": "Home", "Category": "Mobility", "Exercises": [{"name": "90/90 Breathing", "sets": "5 mins", "tempo": "Slow", "note": "Reset pelvis."}, {"name": "Bird Dog", "sets": "3x10", "tempo": "Hold", "note": "Stability."}, {"name": "Plank", "sets": "3x30s", "tempo": "Hold", "note": "Tension."}], "Core": []},
+            "Thursday": {"Focus": "Light Activity", "Type": "Recovery", "Category": "Mobility", "Exercises": [{"name": "Walk", "sets": "20 mins", "tempo": "-", "note": "Keep moving."}], "Core": []},
+            "Friday": {"Focus": "Full Body Flow", "Type": "Home", "Category": "Mobility", "Exercises": [{"name": "World's Greatest Stretch", "sets": "5/side", "tempo": "Slow", "note": "Open hips."}, {"name": "Glute Bridges", "sets": "3x15", "tempo": "Squeeze", "note": "Wake glutes."}, {"name": "Scap Pushups", "sets": "3x15", "tempo": "Slow", "note": "Shoulders."}], "Core": []},
+            "Saturday": {"Focus": "Rest", "Type": "Recovery", "Category": "Mobility", "Exercises": [{"name": "Rest", "sets": "-", "tempo": "-", "note": "Sleep."}], "Core": []},
+            "Sunday": {"Focus": "System Check", "Type": "Recovery", "Category": "Mobility", "Exercises": [{"name": "Vitamin D3", "sets": "1 Sachet", "tempo": "-", "note": "With Fat."}], "Core": []}
+        }
+    },
+    "Phase 1: Structural Repair (Days 15-45)": {
         "Theme": "Fix Back. Fire Adductors. Detox.", "Class": "repair",
         "Routine": {
             "Monday": {"Focus": "Adductor & Glute Repair", "Type": "Gym", "Category": "Lower", "Home_Map": "Monday", "Exercises": [
@@ -211,7 +221,7 @@ def ai_coach(day_count, mode, mood):
 
 # --- MAIN APP ---
 def main():
-    st.title("🛡️ Bulletproof Athlete v14")
+    st.title("🛡️ Bulletproof Athlete v15")
     
     tab_workout, tab_bible, tab_history = st.tabs(["🏋️ Daily Protocol", "📖 The Iron Bible", "📜 History"])
 
@@ -219,15 +229,19 @@ def main():
     st.sidebar.header("⚙️ Settings")
     days_active = st.sidebar.number_input("Days Active", min_value=1, value=1)
     
-    # RESTORED: Phase Progress Bar
+    # PHASE PROGRESS BAR
     phase_progress = min(days_active / 30, 1.0)
-    st.sidebar.write(f"**Phase 1 Completion:** {int(phase_progress*100)}%")
+    st.sidebar.write(f"**Phase Progress:** {int(phase_progress*100)}%")
     st.sidebar.progress(phase_progress)
     
-    st.sidebar.divider()
     location = st.sidebar.radio("📍 Location", ["Gym", "Home"])
-    mode = "Foundation (First 6 Months)" 
-    st.sidebar.info(f"Mode Locked: {mode}")
+    
+    # Phase Selection
+    current_phase_name = "Phase 1: Structural Repair (Days 15-45)"
+    if days_active <= 14:
+        current_phase_name = "Phase 0: The Reset (Days 1-14)"
+        
+    st.sidebar.info(f"Current Phase: {current_phase_name}")
     
     if st.sidebar.button("🗑️ Clear History Log"):
         if clear_history():
@@ -252,6 +266,7 @@ def main():
         col1.metric("🔥 Streak", f"{streak}")
         mood = col2.selectbox("Status", ["Neutral", "Great / Strong", "Tired / Low Energy", "Injured / Pain"])
         
+        mode = "Foundation"
         msg, override = ai_coach(days_active, mode, mood)
         if override: st.error(msg)
         else: st.info(msg)
@@ -268,9 +283,13 @@ def main():
         if override:
             plan = {"Focus": "Emergency Rehab", "Type": "Rehab", "Exercises": HOME_REPAIR["Thursday"], "Core": [], "Warmup": [], "Cooldown": []} 
         else:
-            plan = get_daily_plan(FOUNDATION_PHASES["Phase 1: Structural Repair"], today_name, location == "Home")
+            plan = get_daily_plan(FOUNDATION_PHASES[current_phase_name], today_name, location == "Home")
 
-        st.markdown(f"<div class='banner repair'><h3>{plan['Focus']}</h3></div>", unsafe_allow_html=True)
+        css = "repair"
+        if "Reset" in current_phase_name: css = "reset"
+        if plan["Type"] == "Recovery": css = "recovery"
+        
+        st.markdown(f"<div class='banner {css}'><h3>{plan['Focus']}</h3></div>", unsafe_allow_html=True)
 
         # Warmup
         if plan.get("Warmup"):
@@ -285,7 +304,6 @@ def main():
                 link = get_youtube_link(ex['name'])
                 c1.markdown(f"**{i+1}. {ex['name']}** [[📺 Demo]]({link})")
                 
-                # ALTERNATIVE DISPLAY (GYM ONLY)
                 if plan["Type"] == "Gym" and "alt" in ex and ex["alt"] != "-":
                     c1.markdown(f"<span class='alt-text'>Gym Busy? Use: {ex['alt']}</span>", unsafe_allow_html=True)
                 
