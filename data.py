@@ -4,163 +4,186 @@
 # 1. DYNAMIC WARMUPS & COOLDOWNS
 # ==========================================
 WARMUPS = {
-    "Lower": [{"name": "High Knees", "time": "30s", "note": "Get heart rate up."}, {"name": "Jumping Jacks", "time": "30s", "note": "Full body warmth."}, {"name": "Leg Swings", "time": "15/side", "note": "Loose hips."}],
-    "Push": [{"name": "Arm Circles", "time": "30s", "note": "Big circles."}, {"name": "Plank to Down Dog", "time": "10 reps", "note": "Shoulder mobility."}, {"name": "Jumping Jacks", "time": "30s", "note": "Cardio."}],
-    "Pull": [{"name": "Seal Jacks", "time": "30s", "note": "Open chest."}, {"name": "Cat-Cow", "time": "1 min", "note": "Spine flow."}, {"name": "Torso Twists", "time": "20 reps", "note": "Rotation."}],
-    "Mobility": [{"name": "Boxer Shuffle", "time": "2 mins", "note": "Light bounce."}, {"name": "Joint Circles", "time": "2 mins", "note": "Wrists/Ankles."}],
-    "Runtastic": [{"name": "Jumping Jacks", "time": "60s", "note": "Classic warmup."}, {"name": "High Knees", "time": "30s", "note": "Drive knees up."}, {"name": "Lunge Twist", "time": "10 reps", "note": "Step and twist."}]
+    "Lower": [
+        {"name": "Jumping Jacks", "time": "60 secs", "note": "Get heart rate up."},
+        {"name": "High Knees", "time": "45 secs", "note": "Drive knees to chest."},
+        {"name": "Bodyweight Squats", "time": "20 reps", "note": "Fast tempo."},
+        {"name": "Lunge with Twist", "time": "10 reps/side", "note": "Open hips."}
+    ],
+    "Push": [
+        {"name": "Arm Circles", "time": "30 secs", "note": "Big circles."},
+        {"name": "Plank to Down-Dog", "time": "10 reps", "note": "Shoulder mobility."},
+        {"name": "Wall Pushups", "time": "15 reps", "note": "Activation."},
+        {"name": "Jumping Jacks", "time": "60 secs", "note": "Blood flow."}
+    ],
+    "Pull": [
+        {"name": "Jumping Jacks", "time": "60 secs", "note": "Warmup."},
+        {"name": "Arm Cross Swings", "time": "30 secs", "note": "Chest opener."},
+        {"name": "Cat-Cow", "time": "1 min", "note": "Spine."},
+        {"name": "Superman Pulses", "time": "15 reps", "note": "Wake up back."}
+    ],
+    "Mobility": [
+        {"name": "Light Jog/March", "time": "3 mins", "note": "Gentle."},
+        {"name": "Hip Circles", "time": "1 min", "note": "Loosen up."}
+    ]
 }
 
 COOLDOWNS = {
-    "Lower": [{"name": "Quad Stretch", "time": "1 min/side", "target": "Quads"}, {"name": "Pigeon Pose", "time": "2 mins/side", "target": "Glutes"}],
-    "Push": [{"name": "Chest Opener", "time": "1 min", "target": "Pecs"}, {"name": "Child's Pose", "time": "2 mins", "target": "Shoulders/Back"}],
-    "Pull": [{"name": "Lat Stretch", "time": "1 min/side", "target": "Lats"}, {"name": "Forward Fold", "time": "2 mins", "target": "Hamstrings/Back"}],
-    "Mobility": [{"name": "Deep Breathing", "time": "3 mins", "target": "Recovery"}],
-    "Runtastic": [{"name": "Cobra Stretch", "time": "1 min", "target": "Abs"}, {"name": "Down Dog", "time": "1 min", "target": "Calves/Hams"}, {"name": "Butterfly", "time": "2 mins", "target": "Groin"}]
+    "Lower": [
+        {"name": "Quad Stretch (Standing)", "time": "1 min/side", "target": "Quads"},
+        {"name": "Deep Lunge Hold", "time": "1 min/side", "target": "Hip Flexors"},
+        {"name": "Butterfly Stretch", "time": "2 mins", "target": "Adductors"}
+    ],
+    "Push": [
+        {"name": "Chest Opener against Wall", "time": "1 min/side", "target": "Pecs"},
+        {"name": "Child's Pose", "time": "2 mins", "target": "Shoulders/Back"},
+        {"name": "Tricep Overhead Stretch", "time": "1 min/side", "target": "Triceps"}
+    ],
+    "Pull": [
+        {"name": "Cat-Cow (Slow)", "time": "2 mins", "target": "Spine"},
+        {"name": "Seated Forward Fold", "time": "2 mins", "target": "Hamstrings/Back"},
+        {"name": "Neck Rolls", "time": "1 min", "target": "Neck"}
+    ],
+    "Mobility": [
+        {"name": "Corpse Pose", "time": "5 mins", "target": "Total Relaxation"}
+    ]
 }
 
 # ==========================================
-# 2. FOUNDATION PHASE (LIFE PROTOCOL - PRESERVED)
+# 2. RUNTASTIC 6-WEEK TRANSFORMATION DATA
 # ==========================================
-# (Keeping this here so the 'Life Protocol' mode still works if you switch back)
+# Logic: 4 Days/Week. Circuit Style.
+# Day 1: Full Body Alpha
+# Day 2: Core & Cardio
+# Day 3: Lower Body Power
+# Day 4: The "Runtastic" Challenge (High Reps)
+
+COURSE_DATA = {
+    # --- WEEKS 1-2: THE IGNITION (Adaptation) ---
+    1: {"Phase": "Phase 1: Ignition", "Theme": "phase1", "Schedule": {
+        "Day 1": {"Focus": "Full Body Tone", "Exercises": [
+            {"name": "Pushups", "sets": "3 Rounds x 12", "tempo": "Steady", "note": "Chest to floor."},
+            {"name": "Squats", "sets": "3 Rounds x 20", "tempo": "Fast", "note": "Deep depth."},
+            {"name": "Lunges", "sets": "3 Rounds x 14", "tempo": "Steady", "note": "Alternating legs."},
+            {"name": "Plank", "sets": "3 Rounds x 45s", "tempo": "Hold", "note": "Keep back flat."}
+        ]},
+        "Day 2": {"Focus": "Abs & Cardio", "Exercises": [
+            {"name": "Mountain Climbers", "sets": "3 x 40s", "tempo": "Fast", "note": "Knees to chest."},
+            {"name": "High Knees", "sets": "3 x 40s", "tempo": "Sprint", "note": "Run in place."},
+            {"name": "Bicycle Crunches", "sets": "3 x 20", "tempo": "Control", "note": "Elbow to opposite knee."},
+            {"name": "Leg Raises", "sets": "3 x 15", "tempo": "Slow", "note": "Don't arch back."}
+        ]},
+        "Day 3": {"Focus": "Lower Body Burn", "Exercises": [
+            {"name": "Sumo Squats", "sets": "4 x 15", "tempo": "Steady", "note": "Feet wide, toes out."},
+            {"name": "Glute Bridges", "sets": "4 x 20", "tempo": "Squeeze", "note": "Pause at top."},
+            {"name": "Wall Sit", "sets": "3 x 60s", "tempo": "Hold", "note": "Thighs parallel."},
+            {"name": "Calf Raises", "sets": "3 x 25", "tempo": "Fast", "note": "Burnout."}
+        ]},
+        "Day 4": {"Focus": "The Challenge (No Rest)", "Exercises": [
+            {"name": "Jumping Jacks", "sets": "50 Reps", "tempo": "Non-stop", "note": "Warm up."},
+            {"name": "Bodyweight Squats", "sets": "40 Reps", "tempo": "Non-stop", "note": "Burn the legs."},
+            {"name": "Pushups", "sets": "30 Reps", "tempo": "Non-stop", "note": "Break if needed."},
+            {"name": "Sit-ups", "sets": "20 Reps", "tempo": "Non-stop", "note": "Full range."},
+            {"name": "Burpees", "sets": "10 Reps", "tempo": "Max Effort", "note": "Finish strong."}
+        ]}
+    }},
+
+    # --- WEEKS 3-4: ACCELERATION (Intensity Up) ---
+    2: {"Phase": "Phase 2: Acceleration", "Theme": "phase2", "Schedule": {
+        "Day 1": {"Focus": "Full Body Power", "Exercises": [
+            {"name": "Plyo Pushups", "sets": "3 x 10", "tempo": "Explosive", "note": "Hands leave ground."},
+            {"name": "Jump Squats", "sets": "3 x 15", "tempo": "Explosive", "note": "Land soft."},
+            {"name": "Commandos", "sets": "3 x 12", "tempo": "Steady", "note": "Plank to Pushup position."},
+            {"name": "Side Plank Dips", "sets": "3 x 15/side", "tempo": "Steady", "note": "Obliques."}
+        ]},
+        "Day 2": {"Focus": "Core Crusher", "Exercises": [
+            {"name": "Russian Twists", "sets": "3 x 40s", "tempo": "Fast", "note": "Feet off ground."},
+            {"name": "Plank Jacks", "sets": "3 x 40s", "tempo": "Fast", "note": "Plank + Jumping Jack legs."},
+            {"name": "Flutter Kicks", "sets": "3 x 40s", "tempo": "Fast", "note": "Legs straight."},
+            {"name": "Superman Hold", "sets": "3 x 45s", "tempo": "Hold", "note": "Squeeze lower back."}
+        ]},
+        "Day 3": {"Focus": "Legs & Lungs", "Exercises": [
+            {"name": "Jump Lunges", "sets": "4 x 16 (Total)", "tempo": "Fast", "note": "Switch in air."},
+            {"name": "Single Leg RDL", "sets": "3 x 12/leg", "tempo": "Slow", "note": "Balance."},
+            {"name": "Curtsy Lunges", "sets": "3 x 15/side", "tempo": "Steady", "note": "Target glutes."},
+            {"name": "Burpees", "sets": "3 x 12", "tempo": "Steady", "note": "Pace yourself."}
+        ]},
+        "Day 4": {"Focus": "The 300 Challenge", "Exercises": [
+            {"name": "Squats", "sets": "100 Reps", "tempo": "Time", "note": "As fast as possible."},
+            {"name": "Pushups", "sets": "50 Reps", "tempo": "Time", "note": "Chest to floor."},
+            {"name": "Lunges", "sets": "50 Reps", "tempo": "Time", "note": "Total count."},
+            {"name": "Situps", "sets": "50 Reps", "tempo": "Time", "note": "Core burner."},
+            {"name": "Burpees", "sets": "50 Reps", "tempo": "Time", "note": "The finisher."}
+        ]}
+    }},
+
+    # --- WEEKS 5-6: PEAK PERFORMANCE (Max Effort) ---
+    3: {"Phase": "Phase 3: Peak Performance", "Theme": "phase3", "Schedule": {
+        "Day 1": {"Focus": "Tabata Style (20s Work/10s Rest)", "Exercises": [
+            {"name": "Burpees", "sets": "8 Rounds", "tempo": "Max Effort", "note": "Tabata Protocol."},
+            {"name": "Pushups", "sets": "8 Rounds", "tempo": "Max Effort", "note": "Tabata Protocol."},
+            {"name": "Jump Squats", "sets": "8 Rounds", "tempo": "Max Effort", "note": "Tabata Protocol."},
+            {"name": "Situps", "sets": "8 Rounds", "tempo": "Max Effort", "note": "Tabata Protocol."}
+        ]},
+        "Day 2": {"Focus": "Strength Endurance", "Exercises": [
+            {"name": "Decline Pushups", "sets": "4 x Failure", "tempo": "Control", "note": "Feet on chair."},
+            {"name": "Pistol Squat (Box)", "sets": "4 x 8/leg", "tempo": "Slow", "note": "Single leg sit/stand."},
+            {"name": "Tricep Dips", "sets": "4 x 20", "tempo": "Pump", "note": "Chair dips."},
+            {"name": "V-Ups", "sets": "4 x 15", "tempo": "Snap", "note": "Touch toes."}
+        ]},
+        "Day 3": {"Focus": "Agility & Speed", "Exercises": [
+            {"name": "Sprints (In Place)", "sets": "10 x 30s", "tempo": "Sprint", "note": "High knees fast."},
+            {"name": "Lateral Jumps", "sets": "3 x 45s", "tempo": "Bounding", "note": "Skater jumps."},
+            {"name": "Spiderman Pushups", "sets": "3 x 12", "tempo": "Control", "note": "Knee to elbow."},
+            {"name": "Plank to Squat", "sets": "3 x 15", "tempo": "Flow", "note": "Mobility + Speed."}
+        ]},
+        "Day 4": {"Focus": "The Final Exam", "Exercises": [
+            {"name": "Burpees", "sets": "100 Reps", "tempo": "For Time", "note": "Do them all. No time limit."},
+            {"name": "Squats", "sets": "100 Reps", "tempo": "For Time", "note": "Legs will burn."},
+            {"name": "Pushups", "sets": "100 Reps", "tempo": "For Time", "note": "Break into sets."},
+            {"name": "Plank", "sets": "Max Hold", "tempo": "Failure", "note": "Until you drop."}
+        ]}
+    }}
+}
+
+# Clone weeks to fill the 6-week schedule
+COURSE_DATA[2] = COURSE_DATA[1]
+COURSE_DATA[4] = COURSE_DATA[2]
+COURSE_DATA[6] = COURSE_DATA[3]
+
+# ==========================================
+# 3. LIFE PROTOCOL DATA (Shared from previous)
+# ==========================================
+# (Keeping your Life Protocol intact so you have both options)
 HOME_REPAIR = {
-    "Monday": [{"name": "Pillow Squeeze", "sets": "4x15s", "tempo": "Max", "alt":"-", "note":"Adductors."}, {"name": "Copenhagen Plank", "sets": "3x20s", "tempo": "Hold", "alt":"-", "note":"Groin."}],
-    "Thursday": [{"name": "Superman", "sets": "4x30s", "tempo": "Hold", "alt":"-", "note":"Back."}, {"name": "Bird Dog", "sets": "3x10", "tempo": "Hold", "alt":"-", "note":"Core."}],
-    "Push": [{"name": "Pushups", "sets": "3xF", "tempo": "2-0-1", "alt":"-", "note":"Chest."}],
-    "Pull": [{"name": "Door Row", "sets": "4x15", "tempo": "Squeeze", "alt":"-", "note":"Back."}]
+    "Monday": [{"name": "Seated Pillow Squeeze", "sets": "4x15s", "tempo": "Max", "alt":"-", "note":"Adductor"}, {"name": "Copenhagen Plank", "sets": "3x20s", "tempo":"Hold", "alt":"-", "note":"Adductor"}, {"name": "Split Squat", "sets": "3x10", "tempo":"3-1-1", "alt":"-", "note":"Glute"}],
+    "Thursday": [{"name": "Superman", "sets": "4x30s", "tempo":"Hold", "alt":"-", "note":"Back"}, {"name": "Single Leg RDL", "sets": "3x12", "tempo":"3-1-1", "alt":"-", "note":"Hinge"}, {"name": "Bird Dog", "sets": "3x10", "tempo":"Hold", "alt":"-", "note":"Core"}],
+    "Push": [{"name": "Pike Pushups", "sets": "3x10", "tempo":"Slow", "alt":"-", "note":"Shoulders"}, {"name": "Pushups", "sets": "3xF", "tempo":"2-0-1", "alt":"-", "note":"Chest"}],
+    "Pull": [{"name": "Towel Row", "sets": "4x15", "tempo":"Squeeze", "alt":"-", "note":"Back"}, {"name": "Scap Retract", "sets": "3x20", "tempo":"Hold", "alt":"-", "note":"Posture"}]
 }
 
 FOUNDATION_PHASES = {
     "Phase 1: Structural Repair": {
         "Theme": "Fix Back.", "Class": "repair",
         "Routine": {
-            "Monday": {"Focus": "Repair", "Type": "Home", "Category": "Lower", "Home_Map": "Monday", "Exercises": HOME_REPAIR["Monday"], "Core": []},
-            "Tuesday": {"Focus": "Push", "Type": "Home", "Category": "Push", "Home_Map": "Push", "Exercises": HOME_REPAIR["Push"], "Core": []},
-            "Thursday": {"Focus": "Back", "Type": "Home", "Category": "Lower", "Home_Map": "Thursday", "Exercises": HOME_REPAIR["Thursday"], "Core": []},
-            "Friday": {"Focus": "Pull", "Type": "Home", "Category": "Pull", "Home_Map": "Pull", "Exercises": HOME_REPAIR["Pull"], "Core": []}
+            "Monday": {"Focus": "Adductors", "Type": "Gym", "Category": "Lower", "Home_Map": "Monday", "Exercises": [{"name": "Adductor Machine", "sets": "3x15", "tempo": "3-0-1", "alt": "Cable", "note": "Squeeze."}], "Core": []},
+            "Tuesday": {"Focus": "Push", "Type": "Gym", "Category": "Push", "Home_Map": "Push", "Exercises": [{"name": "DB Press", "sets": "3x10", "tempo": "2-1-1", "alt": "Machine", "note": "Press."}], "Core": []},
+            "Wednesday": {"Focus": "Rest", "Type": "Recovery", "Category": "Mobility", "Home_Map": "Monday", "Exercises": [{"name": "Walk", "sets": "30m", "tempo": "-", "alt": "-", "note": "Walk"}], "Core": []},
+            "Thursday": {"Focus": "Back", "Type": "Gym", "Category": "Lower", "Home_Map": "Thursday", "Exercises": [{"name": "Back Ext", "sets": "3x15", "tempo": "2-1-1", "alt": "Bird Dog", "note": "Hinge."}], "Core": []},
+            "Friday": {"Focus": "Pull", "Type": "Gym", "Category": "Pull", "Home_Map": "Pull", "Exercises": [{"name": "Row", "sets": "3x10", "tempo": "2-1-1", "alt": "Cable", "note": "Row."}], "Core": []},
+            "Saturday": {"Focus": "Fun", "Type": "Recovery", "Category": "Mobility", "Home_Map": "Monday", "Exercises": [{"name": "Hike", "sets": "60m", "tempo": "-", "alt": "-", "note": "Move"}], "Core": []},
+            "Sunday": {"Focus": "Rest", "Type": "Recovery", "Category": "Mobility", "Home_Map": "Monday", "Exercises": [{"name": "Rest", "sets": "-", "tempo": "-", "alt": "-", "note": "Rest"}], "Core": []},
         }
     }
 }
 
-# ==========================================
-# 3. THE 6-WEEK RUNTASTIC LEGACY COURSE
-# ==========================================
-# High Volume | Circuits | Cardio Elements
-
-COURSE_DATA = {
-    # --- WEEKS 1-2: INIT (Conditioning Base) ---
-    1: {"Phase": "Weeks 1-2: The Initiation", "Theme": "phase1", "Schedule": {
-            "Day 1": {"Focus": "Full Body Alpha", "Exercises": [
-                {"name": "Jumping Jacks", "sets": "50 Reps", "tempo": "Fast", "note": "Continuous motion."},
-                {"name": "Bodyweight Squats", "sets": "20 Reps", "tempo": "Steady", "note": "Full depth."},
-                {"name": "Pushups", "sets": "10 Reps", "tempo": "Steady", "note": "Knees if needed."},
-                {"name": "Sit-Ups", "sets": "15 Reps", "tempo": "Control", "note": "Touch toes."},
-                {"name": "Mountain Climbers", "sets": "20 Reps (Total)", "tempo": "Fast", "note": "Knees to chest."}
-            ]},
-            "Day 2": {"Focus": "Lower Burn", "Exercises": [
-                {"name": "High Knees", "sets": "30s", "tempo": "Sprint", "note": "Knees to hip height."},
-                {"name": "Reverse Lunges", "sets": "20 Reps", "tempo": "Steady", "note": "Alternating legs."},
-                {"name": "Glute Bridges", "sets": "20 Reps", "tempo": "Squeeze", "note": "Hips high."},
-                {"name": "Squat Hold", "sets": "30s", "tempo": "Hold", "note": "Sit in the chair."}
-            ]},
-            "Day 3": {"Focus": "Core & Cardio", "Exercises": [
-                {"name": "Bicycle Crunches", "sets": "30 Reps", "tempo": "Control", "note": "Elbow to opposite knee."},
-                {"name": "Plank", "sets": "45s", "tempo": "Hold", "note": "Flat back."},
-                {"name": "Leg Raises", "sets": "12 Reps", "tempo": "Slow", "note": "Hands under hips if needed."},
-                {"name": "Boxer Shuffle", "sets": "2 mins", "tempo": "Bounce", "note": "Keep moving."}
-            ]},
-            "Day 4": {"Focus": "The Bravo Circuit", "Exercises": [
-                {"name": "Burpees (No Pushup)", "sets": "10 Reps", "tempo": "Steady", "note": "Jump back, jump up."},
-                {"name": "Pushups", "sets": "12 Reps", "tempo": "Steady", "note": "Chest to floor."},
-                {"name": "Lunges", "sets": "20 Reps", "tempo": "Steady", "note": "Total reps."},
-                {"name": "Plank Jacks", "sets": "20 Reps", "tempo": "Fast", "note": "Plank position, feet jump out/in."}
-            ]}
-    }},
-    
-    # --- WEEKS 3-4: TRANSFORMATION (Volume Increase) ---
-    3: {"Phase": "Weeks 3-4: Transformation", "Theme": "phase2", "Schedule": {
-            "Day 1": {"Focus": "Endurance Charlie", "Exercises": [
-                {"name": "Prisoner Squats", "sets": "30 Reps", "tempo": "Fast", "note": "Hands behind head."},
-                {"name": "Close Grip Pushups", "sets": "15 Reps", "tempo": "Steady", "note": "Elbows tight."},
-                {"name": "High Knees", "sets": "40 Reps", "tempo": "Sprint", "note": "Count one leg."},
-                {"name": "Superman Pull", "sets": "15 Reps", "tempo": "Hold 1s", "note": "Squeeze back."}
-            ]},
-            "Day 2": {"Focus": "Ab Destruction", "Exercises": [
-                {"name": "Sit-Ups", "sets": "25 Reps", "tempo": "Steady", "note": "Full ROM."},
-                {"name": "Russian Twists", "sets": "40 Reps", "tempo": "Fast", "note": "Total reps, feet up."},
-                {"name": "Mountain Climbers", "sets": "40 Reps", "tempo": "Sprint", "note": "Burnout."},
-                {"name": "Side Plank", "sets": "45s/side", "tempo": "Hold", "note": "Hips high."}
-            ]},
-            "Day 3": {"Focus": "Legs Delta", "Exercises": [
-                {"name": "Jump Squats", "sets": "15 Reps", "tempo": "Explosive", "note": "Leave the ground."},
-                {"name": "Forward Lunges", "sets": "24 Reps", "tempo": "Steady", "note": "Alternating."},
-                {"name": "Calf Raises", "sets": "30 Reps", "tempo": "Quick", "note": "Burnout."},
-                {"name": "Wall Sit", "sets": "60s", "tempo": "Hold", "note": "Don't quit."}
-            ]},
-            "Day 4": {"Focus": "Metabolic Echo", "Exercises": [
-                {"name": "Burpees (Full)", "sets": "12 Reps", "tempo": "Steady", "note": "Chest to floor pushup included."},
-                {"name": "Tricep Dips", "sets": "15 Reps", "tempo": "Control", "note": "Use chair."},
-                {"name": "Squats", "sets": "40 Reps", "tempo": "Fast", "note": "Piston style."},
-                {"name": "Jumping Jacks", "sets": "60 Reps", "tempo": "Fast", "note": "Cardio finish."}
-            ]}
-    }},
-
-    # --- WEEKS 5-6: UNLEASHED (High Intensity) ---
-    5: {"Phase": "Weeks 5-6: Unleashed", "Theme": "phase3", "Schedule": {
-            "Day 1": {"Focus": "Full Body Foxtrot", "Exercises": [
-                {"name": "Burpees", "sets": "20 Reps", "tempo": "Fast", "note": "Max effort."},
-                {"name": "Jump Lunges", "sets": "20 Reps", "tempo": "Explosive", "note": "Switch in air."},
-                {"name": "Pushups", "sets": "25 Reps", "tempo": "Steady", "note": "Break sets if needed."},
-                {"name": "Leg Raises", "sets": "20 Reps", "tempo": "Control", "note": "Don't let heels touch floor."}
-            ]},
-            "Day 2": {"Focus": "Upper Power", "Exercises": [
-                {"name": "Pike Pushups", "sets": "15 Reps", "tempo": "Control", "note": "Shoulders."},
-                {"name": "Plank to Pushup", "sets": "15 Reps", "tempo": "Steady", "note": "Up, Up, Down, Down."},
-                {"name": "Wide Pushups", "sets": "20 Reps", "tempo": "Steady", "note": "Chest focus."},
-                {"name": "Door Rows", "sets": "25 Reps", "tempo": "Squeeze", "note": "Back endurance."}
-            ]},
-            "Day 3": {"Focus": "Core Inferno", "Exercises": [
-                {"name": "Scissor Kicks", "sets": "40 Reps", "tempo": "Steady", "note": "Legs straight."},
-                {"name": "Bicycle Crunches", "sets": "50 Reps", "tempo": "Fast", "note": "Total count."},
-                {"name": "Plank", "sets": "90s", "tempo": "Hold", "note": "Mental toughness."},
-                {"name": "Mountain Climbers", "sets": "60 Reps", "tempo": "Sprint", "note": "Gas tank empty."}
-            ]},
-            "Day 4": {"Focus": "The Final Test (Zulu)", "Exercises": [
-                {"name": "High Knees", "sets": "50 Reps", "tempo": "Sprint", "note": "Start."},
-                {"name": "Squats", "sets": "50 Reps", "tempo": "Fast", "note": "Keep moving."},
-                {"name": "Pushups", "sets": "30 Reps", "tempo": "Steady", "note": "Grind."},
-                {"name": "Sit-Ups", "sets": "40 Reps", "tempo": "Steady", "note": "Core."},
-                {"name": "Burpees", "sets": "15 Reps", "tempo": "Max", "note": "Finish."}
-            ]}
-    }}
-}
-
-# MAP WEEKS (2->1, 4->3, 6->5)
-COURSE_DATA[2] = COURSE_DATA[1]
-COURSE_DATA[4] = COURSE_DATA[3]
-COURSE_DATA[6] = COURSE_DATA[5]
-
-# ==========================================
-# 4. IRON BIBLE (ENHANCED FOR BODYWEIGHT)
-# ==========================================
 EXERCISE_BIBLE = {
-    # CARDIO / PLYO
-    "Jumping Jacks": {"Muscle": "Full Body", "Stretch": "Calf Stretch", "Cue": "Touch hands at top."},
-    "Burpees": {"Muscle": "Full Body", "Stretch": "Quad/Chest", "Cue": "Drop fast, explode up."},
-    "High Knees": {"Muscle": "Hip Flexors/Cardio", "Stretch": "Quad Stretch", "Cue": "Knees to belly button height."},
-    "Mountain Climbers": {"Muscle": "Core/Cardio", "Stretch": "Cobra Pose", "Cue": "Keep hips low. Drive knees."},
-    # LEGS
-    "Bodyweight Squats": {"Muscle": "Quads", "Stretch": "Quad Stretch", "Cue": "Hips back first."},
-    "Lunges": {"Muscle": "Legs", "Stretch": "Lunge Stretch", "Cue": "90 degree angles."},
-    "Jump Squats": {"Muscle": "Explosiveness", "Stretch": "Quad Stretch", "Cue": "Soft landing."},
-    "Pistol Squat": {"Muscle": "Legs (Advanced)", "Stretch": "Hamstring Fold", "Cue": "Balance on one foot."},
-    # PUSH
-    "Pushups": {"Muscle": "Chest/Tri", "Stretch": "Chest Opener", "Cue": "Chest to floor."},
-    "Diamond Pushups": {"Muscle": "Triceps", "Stretch": "Overhead Tricep", "Cue": "Hands make a diamond."},
-    "Pike Pushups": {"Muscle": "Shoulders", "Stretch": "Cross Body", "Cue": "Look at feet."},
-    # CORE
-    "Sit-Ups": {"Muscle": "Abs", "Stretch": "Cobra Pose", "Cue": "Curl up, don't yank neck."},
-    "Leg Raises": {"Muscle": "Lower Abs", "Stretch": "Cobra Pose", "Cue": "Hands under hips for support."},
-    "Russian Twists": {"Muscle": "Obliques", "Stretch": "Side Bend", "Cue": "Follow hands with eyes."},
-    "Plank": {"Muscle": "Core Stability", "Stretch": "Child's Pose", "Cue": "Squeeze glutes."}
+    "Burpees": {"Muscle": "Full Body", "Stretch": "Child's Pose", "Cue": "Chest to floor, jump high."},
+    "Mountain Climbers": {"Muscle": "Core/Cardio", "Stretch": "Cobra", "Cue": "Keep hips low, knees fast."},
+    "Jump Squats": {"Muscle": "Legs/Power", "Stretch": "Quad Stretch", "Cue": "Explode up, land soft."},
+    "Pushups": {"Muscle": "Chest", "Stretch": "Chest Opener", "Cue": "Elbows back, core tight."},
+    "Plank": {"Muscle": "Core", "Stretch": "Cobra", "Cue": "Squeeze glutes, don't sag."},
+    "High Knees": {"Muscle": "Cardio", "Stretch": "Quad Stretch", "Cue": "Knees above hips."},
+    "Seated Pillow Squeeze": {"Muscle": "Adductors", "Stretch": "Butterfly", "Cue": "Crush it."},
+    "Superman Hold": {"Muscle": "Lower Back", "Stretch": "Child's Pose", "Cue": "Lift everything."}
 }
