@@ -3,7 +3,7 @@ import streamlit as st
 import datetime
 import pandas as pd
 import os
-import data # Importing the data file we just created
+import data # Importing the data file
 
 # ==========================================
 # 1. CONFIGURATION & HISTORY LOGIC
@@ -143,7 +143,7 @@ def main():
         st.sidebar.success("Logs Cleared")
         st.rerun()
 
-    # Meds
+    # Meds (Shared)
     st.sidebar.divider()
     st.sidebar.header("💊 Daily Stack")
     with st.sidebar.expander("Morning"): st.checkbox("L-Carnitine"); st.checkbox("NMN")
@@ -166,7 +166,7 @@ def main():
         else: st.info(msg)
 
         if st.button("✅ Log Complete"):
-            log_key = f"Week {selected_week} {selected_day}" if mode == "6-Week Alpha Course" else datetime.date.today().strftime("%Y-%m-%d")
+            log_key = f"Week {selected_week} {selected_day}" if mode == "6-Week Alpha Challenge" else datetime.date.today().strftime("%Y-%m-%d")
             save_history(log_key, mode, mood, "Yes")
             st.success("Workout Logged!")
 
@@ -184,7 +184,7 @@ def main():
             st.markdown(f"<div class='banner repair'><h3>{plan['Focus']}</h3></div>", unsafe_allow_html=True)
             
             if plan.get("Warmup"):
-                with st.expander("🔥 Warmup"):
+                with st.expander("🔥 Warmup (Dynamic)"):
                     for w in plan["Warmup"]: st.checkbox(f"**{w['name']}** ({w['time']})")
             
             st.subheader("🏋️ Routine")
@@ -198,22 +198,31 @@ def main():
                     if "note" in ex: c2.caption(f"💡 {ex['note']}")
                     c3.checkbox("Done", key=f"ex_{i}")
                     st.markdown("---")
-            
+                    
             if plan.get("Core"):
                 st.markdown("<div class='core-box'><h4>🧱 Core Finisher</h4>", unsafe_allow_html=True)
                 for c in plan["Core"]: st.checkbox(f"{c['name']} ({c['sets']})")
                 st.markdown("</div>", unsafe_allow_html=True)
-            
+
             if plan.get("Cooldown"):
-                 st.subheader("❄️ Cooldown")
+                 st.subheader("❄️ Cooldown (Targeted)")
                  for c in plan["Cooldown"]: st.checkbox(f"**{c['name']}** ({c['time']})")
 
         # === RENDER: 6-WEEK COURSE ===
         else:
             c_data = data.COURSE_DATA[selected_week]
             w_data = c_data["Schedule"][selected_day]
+            cat = w_data.get("Category", "Mobility")
+            
+            # Dynamic Warmup for Course
+            warmup = data.WARMUPS.get(cat, data.WARMUPS["Mobility"])
+            cooldown = data.COOLDOWNS.get(cat, data.COOLDOWNS["Mobility"])
+
             st.markdown(f"<div class='banner {c_data['Theme']}'><h2>Week {selected_week} - {selected_day}</h2><p>{c_data['Phase']} | Focus: {w_data['Focus']}</p></div>", unsafe_allow_html=True)
             
+            with st.expander("🔥 Warmup (Dynamic)"):
+                for w in warmup: st.checkbox(f"**{w['name']}** ({w['time']})")
+
             for i, ex in enumerate(w_data["Exercises"]):
                 with st.container():
                     c1, c2, c3 = st.columns([3,2,1])
@@ -223,6 +232,9 @@ def main():
                     c2.caption(f"💡 {ex['note']}")
                     c3.checkbox("Done", key=f"wc_{i}")
                     st.markdown("---")
+            
+            st.subheader("❄️ Cooldown (Targeted)")
+            for c in cooldown: st.checkbox(f"**{c['name']}** ({c['time']})")
 
     # --- TAB 2: BIBLE ---
     with tab_bible:
