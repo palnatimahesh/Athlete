@@ -6,7 +6,7 @@ import os
 # ==========================================
 # 1. CONFIGURATION & SETUP
 # ==========================================
-st.set_page_config(page_title="Bulletproof Athlete v13", page_icon="🛡️", layout="wide")
+st.set_page_config(page_title="Bulletproof Athlete v14", page_icon="🛡️", layout="wide")
 
 HISTORY_FILE = "workout_history.csv"
 
@@ -70,7 +70,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ==========================================
-# 2. DYNAMIC WARMUPS
+# 2. DYNAMIC WARMUPS & COOLDOWNS
 # ==========================================
 WARMUPS = {
     "Lower": [{"name": "90/90 Hip Switch", "time": "2 mins"}, {"name": "Cat-Cow", "time": "1 min"}, {"name": "Glute Bridges", "time": "20 reps"}],
@@ -90,20 +90,23 @@ COOLDOWNS = {
 # 3. DATABASES
 # ==========================================
 
-# --- HOME REPAIR ROUTINES ---
+# --- HOME REPAIR ROUTINES (Logic: Matches Gym Biomechanics) ---
 HOME_REPAIR = {
-    "Monday": [ # ADDUCTOR REPAIR
-        {"name": "Seated Pillow Squeeze", "sets": "4 x 15s", "tempo": "Max Effort", "alt":"-", "note": "Sit on chair. Squeeze pillow between knees 100% effort."},
-        {"name": "Copenhagen Plank (Floor)", "sets": "3 x 20s", "tempo": "Hold", "alt":"-", "note": "Top knee on chair. Lift hips. Gold standard."},
+    # MONDAY: ADDUCTOR REPAIR (Replacing Gym Adductor Machine)
+    "Monday": [
+        {"name": "Seated Pillow Squeeze", "sets": "4 x 15s", "tempo": "Max Effort", "alt":"-", "note": "Sit on chair. Squeeze pillow between knees 100% effort. Fires Adductors."},
+        {"name": "Copenhagen Plank (Floor)", "sets": "3 x 20s", "tempo": "Hold", "alt":"-", "note": "Top knee on chair. Lift hips. Gold standard for groin strength."},
         {"name": "Bulgarian Split Squat", "sets": "3 x 10/leg", "tempo": "3-1-1", "alt":"-", "note": "Stretches hip flexor while strengthening glute."},
         {"name": "Glute Bridge March", "sets": "3 x 20", "tempo": "Slow", "alt":"-", "note": "Hips up. Lift one leg at a time without hips dropping."}
     ],
-    "Thursday": [ # LOWER BACK ARMOUR
+    # THURSDAY: LOWER BACK ARMOUR (Replacing Gym Back Extensions)
+    "Thursday": [
         {"name": "Superman Hold", "sets": "4 x 30s", "tempo": "Hold", "alt":"-", "note": "Lie on belly. Lift chest and thighs. Squeezes spinal erectors."},
         {"name": "Single Leg RDL (Bodyweight)", "sets": "3 x 12/leg", "tempo": "3-1-1", "alt":"-", "note": "Soft knee. Reach to floor. Forces QL muscle to balance spine."},
-        {"name": "Bird-Dog (High Tension)", "sets": "3 x 10/side", "tempo": "Hold 5s", "alt":"-", "note": "Make a fist. Kick heel back hard. Brace core."},
+        {"name": "Bird-Dog (High Tension)", "sets": "3 x 10/side", "tempo": "Hold 5s", "alt":"-", "note": "Make a fist. Kick heel back hard. Brace core like getting punched."},
         {"name": "Doorframe Rows", "sets": "4 x 15", "tempo": "Squeeze", "alt":"-", "note": "Upper back posture fix."}
     ],
+    # UPPER BODY DAYS (Standard Push/Pull)
     "Push": [{"name": "Decline Pushups", "sets": "4xF", "tempo": "2-0-1", "alt":"-", "note": "Feet on couch."}, {"name": "Pike Pushups", "sets": "3x10", "tempo": "Slow", "alt":"-", "note": "Shoulders."}, {"name": "Door Flys", "sets": "3x15", "tempo": "Squeeze", "alt":"-", "note": "Chest."}],
     "Pull": [{"name": "Door Towel Row", "sets": "4x15", "tempo": "Squeeze", "alt":"-", "note": "Lats."}, {"name": "Prone W-Raise", "sets": "3x15", "tempo": "Hold", "alt":"-", "note": "Upper Back."}, {"name": "Scap Retract", "sets": "3x20", "tempo": "Hold", "alt":"-", "note": "Posture."}]
 }
@@ -208,13 +211,20 @@ def ai_coach(day_count, mode, mood):
 
 # --- MAIN APP ---
 def main():
-    st.title("🛡️ Bulletproof Athlete v13")
+    st.title("🛡️ Bulletproof Athlete v14")
     
     tab_workout, tab_bible, tab_history = st.tabs(["🏋️ Daily Protocol", "📖 The Iron Bible", "📜 History"])
 
     # SIDEBAR
     st.sidebar.header("⚙️ Settings")
     days_active = st.sidebar.number_input("Days Active", min_value=1, value=1)
+    
+    # RESTORED: Phase Progress Bar
+    phase_progress = min(days_active / 30, 1.0)
+    st.sidebar.write(f"**Phase 1 Completion:** {int(phase_progress*100)}%")
+    st.sidebar.progress(phase_progress)
+    
+    st.sidebar.divider()
     location = st.sidebar.radio("📍 Location", ["Gym", "Home"])
     mode = "Foundation (First 6 Months)" 
     st.sidebar.info(f"Mode Locked: {mode}")
